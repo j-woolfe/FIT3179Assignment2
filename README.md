@@ -1,3 +1,3 @@
-##FIT3179 Data visualisation
+## FIT3179 Data visualisation
 
-####Assignment 2
+#### Assignment 2
