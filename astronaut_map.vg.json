@@ -10,15 +10,15 @@
                 "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/world.topojson",
                 "format": {
                     "type": "topojson",
-                    "feature": "world"
-                },
+                    "feature": "world.geo"
+                }
             },
             "mark": {
                 "type": "geoshape",
                 "fill": "lightgray",
                 "stroke": "white"
-                },
-            },
+            }
+        }
                 
     ]
 }
