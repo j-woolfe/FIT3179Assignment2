@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Astronauts: Military vs Civilian",
+  "width": 900,
+  "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
+  },
+  "params": [
+    {
+      "name": "military_status",
+      "bind": {
+        "input": "select",
+        "options": [null, "military", "civilian"],
+        "labels": ["All", "Military", "Civilian"],
+        "name": "Military status: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": {"type": "bar", "opacity": 0.4},
+      "encoding": {
+        "x": {
+          "field": "year_of_selection",
+          "timeUnit": "year",
+          "title": "Year of Selection for First Mission"
+        },
+        "y": {
+          "aggregate": "distinct",
+          "field": "number",
+          "title": "Astronauts selected"
+        }
+      }
+    },
+    {
+      "mark": "bar",
+      "transform": [
+        {
+          "filter": "military_status == null || datum.military_civilian == military_status"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "year_of_selection", "timeUnit": "year"},
+        "y": {"aggregate": "distinct", "field": "number"},
+        "tooltip": [
+          {"field": "year_of_selection", "title": "Year", "timeUnit": "year"},
+          {"field": "name", "aggregate": "distinct", "title": "Astronauts with selected status"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"text": "In 1978 there was a large shift towards more civilian astronauts"}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": -145,
+        "dy": -135,
+        "fontSize": 13
+      },
+      "encoding": {"text": {"field": "text"}}
+
+    }
+  ]
+}
