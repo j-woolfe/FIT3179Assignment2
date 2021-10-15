@@ -34,7 +34,7 @@
       }
     },
     {
-      "mark": "bar",
+      "mark": {"type": "bar"},
       "transform": [
         {
           "filter": "military_status == null || datum.military_civilian == military_status"
@@ -45,14 +45,20 @@
         "y": {"aggregate": "distinct", "field": "number"},
         "tooltip": [
           {"field": "year_of_selection", "title": "Year", "timeUnit": "year"},
-          {"field": "name", "aggregate": "distinct", "title": "Astronauts with selected status"}
+          {
+            "field": "name",
+            "aggregate": "distinct",
+            "title": "Astronauts with selected status"
+          }
         ]
       }
     },
     {
       "data": {
         "values": [
-          {"text": "In 1978 there was a large shift towards more civilian astronauts"}
+          {
+            "text": "In 1978 there was a large influx of civilian astronauts"
+          }
         ]
       },
       "mark": {
@@ -63,7 +69,6 @@
         "fontSize": 13
       },
       "encoding": {"text": {"field": "text"}}
-
     }
   ]
 }
