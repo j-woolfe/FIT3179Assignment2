@@ -1,0 +1,28 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Age of Selected Astronauts",
+  "width": 600,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
+  },
+  "transform": [
+    {"calculate": "datum.year_of_selection - datum.year_of_birth", "as": "age"}
+  ],
+  "mark": {"type": "bar"},
+  "encoding": {
+    "x": {
+      "field": "age",
+      "title": "Age"
+    },
+    "y": {
+      "field": "number",
+      "title": "Number of Astronauts",
+      "aggregate": "distinct"
+    },
+    "tooltip": [
+      {"field": "age", "title": "Age when Selected"},
+      {"field": "number", "aggregate":"distinct", "title": "Count"}
+    ]
+  }
+}
