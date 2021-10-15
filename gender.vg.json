@@ -16,7 +16,7 @@
       "encoding": {
         "x": {
           "field": "year_of_selection",
-          "title": "Year of Selection for First Mission",
+          "title": "Year of Selection",
           "timeUnit": "year"
         },
         "y": {
