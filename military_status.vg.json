@@ -1,11 +1,21 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Astronauts: Military vs Civilian",
+  "title": "Astronaut Selections: Military vs Civilian",
   "width": 900,
   "height": 300,
   "data": {
     "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
   },
+  "transform": [
+    {
+      "calculate": "datum.military_civilian == 'military' ? 1 : 0",
+      "as": "isMilitary"
+    },
+    {
+      "calculate": "datum.military_civilian == 'civilian' ? 1 : 0",
+      "as": "isCivilian"
+    }
+  ],
   "params": [
     {
       "name": "military_status",
@@ -24,13 +34,19 @@
         "x": {
           "field": "year_of_selection",
           "timeUnit": "year",
-          "title": "Year of Selection for First Mission"
+          "title": "Year"
         },
         "y": {
-          "aggregate": "distinct",
+          "aggregate": "count",
           "field": "number",
           "title": "Astronauts selected"
-        }
+        },
+        "tooltip": [
+          {"field": "year_of_selection", "title": "Year", "timeUnit": "year"},
+          {"field": "name", "aggregate": "count", "title": "Total Astronauts"},
+          {"field": "isMilitary", "aggregate": "sum", "title": "Military"},
+          {"field": "isCivilian", "aggregate": "sum", "title": "Civilian"}
+        ]
       }
     },
     {
@@ -42,23 +58,19 @@
       ],
       "encoding": {
         "x": {"field": "year_of_selection", "timeUnit": "year"},
-        "y": {"aggregate": "distinct", "field": "number"},
+        "y": {"aggregate": "count", "field": "number"},
         "tooltip": [
           {"field": "year_of_selection", "title": "Year", "timeUnit": "year"},
-          {
-            "field": "name",
-            "aggregate": "distinct",
-            "title": "Astronauts with selected status"
-          }
+          {"field": "name", "aggregate": "count", "title": "Total Astronauts"},
+          {"field": "isMilitary", "aggregate": "sum", "title": "Military"},
+          {"field": "isCivilian", "aggregate": "sum", "title": "Civilian"}
         ]
       }
     },
     {
       "data": {
         "values": [
-          {
-            "text": "In 1978 there was a large influx of civilian astronauts"
-          }
+          {"text": "In 1978 there was a large influx of civilian astronauts"}
         ]
       },
       "mark": {
