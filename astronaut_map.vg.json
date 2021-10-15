@@ -10,7 +10,22 @@
         "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/world.topojson",
         "format": {"type": "topojson", "feature": "world.geo"}
       },
-      "mark": {"type": "geoshape", "fill": "#f1eef6", "stroke": "darkslategrey"}
+      "mark": {
+        "type": "geoshape",
+        "fill": "#f1eef6",
+        "stroke": "darkslategrey"
+      },
+      "transform": [{"calculate": "0", "as": "noAstronauts"}],
+      "encoding": {
+        "tooltip": [
+          {"field": "properties.name", "type": "nominal", "title": "Country"},
+          {
+            "field": "noAstronauts",
+            "type": "quantitative",
+            "title": "Number of Astronauts"
+          }
+        ]
+      }
     },
     {
       "data": {
@@ -39,11 +54,30 @@
             "type": "threshold",
             "domain": [1, 5, 200, 500],
             "range": ["#f1eef6", "#bdc9e1", "#74a9cf", "#2b8cbe", "#045a8d"]
+          },
+          "legend": {
+            "orient": "bottom-left",
+            "symbolType": "circle",
+            "symbolSize": 1800,
+            "columns": 0,
+            "symbolOffset": 0,
+            "labelAlign": "center",
+            "labelBaseline": "middle",
+            "type": " symbol ",
+            "rowPadding": 10,
+            "labelExpr": "datum.label == '-Infinity' ? '0' : datum.label == '1' ? '1 - 4' : datum.label == '5' ? '5 - 199' : datum.label == '200' ? '200-499' : '500+'",
+            "titleAlign": "left",
+            "titleBaseline": "top",
+            "titlePadding": 30
           }
         },
         "tooltip": [
           {"field": "properties.name", "type": "nominal", "title": "Country"},
-          {"field": "CountryCount", "type": "quantitative", "title": "Number of Astronauts"}
+          {
+            "field": "CountryCount",
+            "type": "quantitative",
+            "title": "Number of Astronauts"
+          }
         ]
       }
     }
