@@ -1,0 +1,33 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Gender of Selected Astronauts",
+  "width": 600,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
+  },
+  "transform": [
+    {"calculate": "datum.sex == 'female' ? 1 : 0", "as": "isFemale"}
+  ],
+  "mark": {"type": "area", "interpolate": "basis"},
+  "encoding": {
+    "x": {
+      "field": "year_of_selection",
+      "title": "Year of Selection for First Mission",
+      "timeUnit": "year"
+    },
+    "y": {
+      "field": "number",
+      "title": "Proportion Female",
+      "aggregate": "distinct",
+      "stack": "normalize",
+      "sort": "ascending"
+    },
+    "color": {
+      "field": "isFemale",
+      "title": "Gender",
+      "scale": {"range": ["#4C78A8", "#B5CF6B"]},
+      "legend": {"labelExpr": "datum.value == 1 ? 'Female' : 'Male'"}
+    }
+  }
+}
