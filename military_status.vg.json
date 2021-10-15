@@ -1,21 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Astronaut Selections: Military vs Civilian",
+  "title": "Astronauts: Military vs Civilian",
   "width": 900,
   "height": 300,
   "data": {
     "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
   },
-  "transform": [
-    {
-      "calculate": "datum.military_civilian == 'military' ? 1 : 0",
-      "as": "isMilitary"
-    },
-    {
-      "calculate": "datum.military_civilian == 'civilian' ? 1 : 0",
-      "as": "isCivilian"
-    }
-  ],
   "params": [
     {
       "name": "military_status",
@@ -29,28 +19,22 @@
   ],
   "layer": [
     {
-      "mark": {"type": "area", "interpolate": "step", "opacity": 0.4},
+      "mark": {"type": "bar", "opacity": 0.4},
       "encoding": {
         "x": {
           "field": "year_of_selection",
           "timeUnit": "year",
-          "title": "Year"
+          "title": "Year of Selection for First Mission"
         },
         "y": {
-          "aggregate": "count",
+          "aggregate": "distinct",
           "field": "number",
           "title": "Astronauts selected"
-        },
-        "tooltip": [
-          {"field": "year_of_selection", "title": "Year", "timeUnit": "year"},
-          {"field": "name", "aggregate": "count", "title": "Total Astronauts"},
-          {"field": "isMilitary", "aggregate": "sum", "title": "Military"},
-          {"field": "isCivilian", "aggregate": "sum", "title": "Civilian"}
-        ]
+        }
       }
     },
     {
-      "mark": {"type": "area", "interpolate": "step"},
+      "mark": {"type": "bar"},
       "transform": [
         {
           "filter": "military_status == null || datum.military_civilian == military_status"
@@ -58,19 +42,23 @@
       ],
       "encoding": {
         "x": {"field": "year_of_selection", "timeUnit": "year"},
-        "y": {"aggregate": "count", "field": "number"},
+        "y": {"aggregate": "distinct", "field": "number"},
         "tooltip": [
           {"field": "year_of_selection", "title": "Year", "timeUnit": "year"},
-          {"field": "name", "aggregate": "count", "title": "Total Astronauts"},
-          {"field": "isMilitary", "aggregate": "sum", "title": "Military"},
-          {"field": "isCivilian", "aggregate": "sum", "title": "Civilian"}
+          {
+            "field": "name",
+            "aggregate": "distinct",
+            "title": "Astronauts with selected status"
+          }
         ]
       }
     },
     {
       "data": {
         "values": [
-          {"text": "In 1978 there was a large influx of civilian astronauts"}
+          {
+            "text": "In 1978 there was a large influx of civilian astronauts"
+          }
         ]
       },
       "mark": {
