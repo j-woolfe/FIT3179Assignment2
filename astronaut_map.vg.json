@@ -4,6 +4,7 @@
   "height": 500,
   "title": "Nationalities of Astronauts",
   "projection": {"type": "equalEarth"},
+  "view": {"strokeOpacity": 0},
   "layer": [
     {
       "data": {
