@@ -38,7 +38,7 @@
             "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
           },
           "transform": [
-            {"filter": "datum.year_of_selection > 0"},
+            {"filter": {"param": "time_brush"}},
             {
               "lookup": "nationality",
               "from": {
@@ -110,6 +110,7 @@
         "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
       },
       "mark": {"type": "area"},
+      "params": [{"name": "time_brush", "select": {"type":"interval", "encodings": ["x"]}}],
       "encoding": {
         "x": {"field": "year_of_selection", "title": "Age"},
         "y": {
