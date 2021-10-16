@@ -12,7 +12,7 @@
         {"calculate": "datum.sex == 'female' ? 1 : 0", "as": "isFemale"},
         {"calculate": "datum.sex == 'male' ? 1 : 0", "as": "isMale"}
       ],
-      "mark": {"type": "area", "interpolate": "step"},
+      "mark": {"type": "area", "interpolate": "monotone"},
       "encoding": {
         "x": {
           "field": "year_of_selection",
