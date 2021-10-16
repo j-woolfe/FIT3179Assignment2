@@ -38,7 +38,7 @@
             "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
           },
           "transform": [
-            {"filter": "datum.year_of_selection < 1980"},
+            {"filter": "datum.year_of_selection > 0"},
             {
               "lookup": "nationality",
               "from": {
