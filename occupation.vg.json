@@ -8,14 +8,11 @@
       },
       "width": 300,
       "height": 300,
-      "mark": {"type": "arc"},
+      "mark": {"type": "bar"},
       "transform": [{"filter": "datum.year_of_selection <= 1980"}],
       "encoding": {
-        "theta": {
-          "field": "number",
-          "aggregate": "count",
-          "title": "Mission Role"
-        },
+        "x": {"field": "occupation", "sort": "-y", "title": null},
+        "y": {"field": "number", "aggregate": "count", "axis": null},
         "color": {"field": "occupation", "title": "Mission Role", "legend": {}}
       }
     },
@@ -25,18 +22,15 @@
       },
       "width": 300,
       "height": 300,
-      "mark": {"type": "arc"},
+      "mark": {"type": "bar"},
       "transform": [
         {
           "filter": "datum.year_of_selection > 1980 && datum.year_of_selection <= 2000"
         }
       ],
       "encoding": {
-        "theta": {
-          "field": "number",
-          "aggregate": "count",
-          "title": "Mission Role"
-        },
+        "x": {"field": "occupation", "sort": "-y", "title": null},
+        "y": {"field": "number", "aggregate": "count", "axis": null},
         "color": {"field": "occupation", "title": "Mission Role", "legend": {}}
       }
     },
@@ -46,14 +40,11 @@
       },
       "width": 300,
       "height": 300,
-      "mark": {"type": "arc"},
+      "mark": {"type": "bar"},
       "transform": [{"filter": "datum.year_of_selection > 2000"}],
       "encoding": {
-        "theta": {
-          "field": "number",
-          "aggregate": "count",
-          "title": "Mission Role"
-        },
+        "x": {"field": "occupation", "sort": "-y", "title": null},
+        "y": {"field": "number", "aggregate": "count", "title": "Mission Role", "axis": null},
         "color": {"field": "occupation", "title": "Mission Role", "legend": {}}
       }
     }
