@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Astronaut mission roles",
+  "hconcat": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
+      },
+      "width": 300,
+      "height": 300,
+      "mark": {"type": "arc"},
+      "transform": [{"filter": "datum.year_of_selection <= 1980"}],
+      "encoding": {
+        "theta": {
+          "field": "number",
+          "aggregate": "count",
+          "title": "Mission Role"
+        },
+        "color": {"field": "occupation", "title": "Mission Role", "legend": {}}
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
+      },
+      "width": 300,
+      "height": 300,
+      "mark": {"type": "arc"},
+      "transform": [
+        {
+          "filter": "datum.year_of_selection > 1980 && datum.year_of_selection <= 2000"
+        }
+      ],
+      "encoding": {
+        "theta": {
+          "field": "number",
+          "aggregate": "count",
+          "title": "Mission Role"
+        },
+        "color": {"field": "occupation", "title": "Mission Role", "legend": {}}
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
+      },
+      "width": 300,
+      "height": 300,
+      "mark": {"type": "arc"},
+      "transform": [{"filter": "datum.year_of_selection > 2000"}],
+      "encoding": {
+        "theta": {
+          "field": "number",
+          "aggregate": "count",
+          "title": "Mission Role"
+        },
+        "color": {"field": "occupation", "title": "Mission Role", "legend": {}}
+      }
+    }
+  ]
+}
