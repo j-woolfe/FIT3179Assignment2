@@ -1,83 +1,125 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
-  "height": 500,
-  "title": "Nationalities of Astronauts",
-  "projection": {"type": "equalEarth"},
-  "layer": [
+  "vconcat": [
     {
-      "data": {
-        "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/world.topojson",
-        "format": {"type": "topojson", "feature": "world.geo"}
-      },
-      "mark": {
-        "type": "geoshape",
-        "fill": "#f1eef6",
-        "stroke": "darkslategrey"
-      },
-      "transform": [{"calculate": "0", "as": "noAstronauts"}],
-      "encoding": {
-        "tooltip": [
-          {"field": "properties.name", "type": "nominal", "title": "Country"},
-          {
-            "field": "noAstronauts",
-            "type": "quantitative",
-            "title": "Number of Astronauts"
-          }
-        ]
-      }
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/world.topojson",
-        "format": {"type": "topojson", "feature": "world.geo"}
-      },
-      "transform": [
+      "width": 800,
+      "height": 400,
+      "title": "Nationalities of Astronauts",
+      "projection": {"type": "equalEarth"},
+      "layer": [
         {
-          "lookup": "properties.name",
-          "from": {
-            "data": {
-              "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronautsCountryFreq.csv"
-            },
-            "key": "Country",
-            "fields": ["CountryCount"]
-          }
-        }
-      ],
-      "mark": {"type": "geoshape"},
-      "encoding": {
-        "color": {
-          "title": "Number of Astronauts",
-          "field": "CountryCount",
-          "type": "quantitative",
-          "scale": {
-            "type": "threshold",
-            "domain": [1, 5, 200, 500],
-            "range": ["#f1eef6", "#bdc9e1", "#74a9cf", "#2b8cbe", "#045a8d"]
+          "data": {
+            "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/world.topojson",
+            "format": {"type": "topojson", "feature": "world.geo"}
           },
-          "legend": {
-            "orient": "bottom-left",
-            "symbolType": "circle",
-            "symbolSize": 1800,
-            "columns": 0,
-            "symbolOffset": 0,
-            "labelAlign": "center",
-            "labelBaseline": "middle",
-            "type": " symbol ",
-            "rowPadding": 10,
-            "labelExpr": "datum.label == '-Infinity' ? '0' : datum.label == '1' ? '1 - 4' : datum.label == '5' ? '5 - 199' : datum.label == '200' ? '200-499' : '500+'",
-            "titleAlign": "left",
-            "titleBaseline": "top",
-            "titlePadding": 30
+          "mark": {
+            "type": "geoshape",
+            "fill": "#f1eef6",
+            "stroke": "darkslategrey"
+          },
+          "transform": [{"calculate": "0", "as": "noAstronauts"}],
+          "encoding": {
+            "tooltip": [
+              {
+                "field": "properties.name",
+                "type": "nominal",
+                "title": "Country"
+              },
+              {
+                "field": "noAstronauts",
+                "type": "quantitative",
+                "title": "Number of Astronauts"
+              }
+            ]
           }
         },
-        "tooltip": [
-          {"field": "properties.name", "type": "nominal", "title": "Country"},
-          {
-            "field": "CountryCount",
-            "type": "quantitative",
-            "title": "Number of Astronauts"
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
+          },
+          "transform": [
+            {"filter": "datum.year_of_selection < 1980"},
+            {
+              "lookup": "nationality",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/world.topojson",
+                  "format": {"type": "topojson", "feature": "world.geo"}
+                },
+                "key": "properties.name"
+              },
+              "as": "geo"
+            },
+            {
+              "joinaggregate": [
+                {"op": "count", "field": "id", "as": "CountryCount"}
+              ],
+              "groupby": ["nationality"]
+            }
+          ],
+          "mark": {"type": "geoshape", "stroke": "darkslategrey"},
+          "encoding": {
+            "shape": {"field": "geo", "type": "geojson"},
+            "color": {
+              "title": "Number of Astronauts",
+              "field": "CountryCount",
+              "type": "quantitative",
+              "scale": {
+                "type": "threshold",
+                "domain": [1, 5, 200, 500],
+                "range": ["#f1eef6", "#bdc9e1", "#74a9cf", "#2b8cbe", "#045a8d"]
+              },
+              "legend": {
+                "orient": "none",
+                "legendX": 0,
+                "legendY": 300,
+                "symbolType": "circle",
+                "symbolSize": 1800,
+                "columns": 0,
+                "symbolOffset": 0,
+                "labelAlign": "center",
+                "labelBaseline": "middle",
+                "type": " symbol ",
+                "rowPadding": 10,
+                "labelExpr": "datum.label == '-Infinity' ? '0' : datum.label == '1' ? '1 - 4' : datum.label == '5' ? '5 - 199' : datum.label == '200' ? '200-499' : '500+'",
+                "titleAlign": "left",
+                "titleBaseline": "top",
+                "titlePadding": 30
+              }
+            },
+            "tooltip": [
+              {
+                "field": "nationality",
+                "type": "nominal",
+                "title": "Country"
+              },
+              {
+                "field": "CountryCount",
+                "type": "quantitative",
+                "title": "Number of Astronauts"
+              }
+            ]
           }
+        }
+      ]
+    },
+    {
+      "width": 800,
+      "height": 200,
+      "data": {
+        "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
+      },
+      "mark": {"type": "area"},
+      "encoding": {
+        "x": {"field": "year_of_selection", "title": "Age"},
+        "y": {
+          "field": "number",
+          "title": "Number of Astronauts",
+          "aggregate": "distinct"
+        },
+        "tooltip": [
+          {"field": "age", "title": "Age when Selected"},
+          {"field": "number", "aggregate": "distinct", "title": "Count"}
         ]
       }
     }
