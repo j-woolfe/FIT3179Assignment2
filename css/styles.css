@@ -1,0 +1,37 @@
+.body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    font-family: 'Lato', sans-serif;
+    font-size: 48px;
+
+}
+
+.subtitle {
+    /* background-color: #f1eef6; */
+    padding: 10px;
+    margin-right: 340px;
+    margin-bottom: 10px;
+}
+
+p {
+    background-color: #f1eef6;
+    padding: 10px;
+    margin: 10px;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.page {
+    width: 900px;
+    padding: 10px;
+    margin: auto;
+
+}
+
+.vis-container {
+    width : 100%;
+}

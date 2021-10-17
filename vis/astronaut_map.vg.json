@@ -1,10 +1,14 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
-  "height": 500,
+  "config": {
+    "axis": {"titleFont": "Lato", "titleFontSize": 12, "labelFont": "Open Sans", "labelFontSize": 11, "grid": false},
+    "title": {"font": "Lato", "fontSize": 18},
+    "view": {"strokeOpacity": 0}
+  },
+  "width": "container",
+  "height": 400,
   "title": "Nationalities of Astronauts",
   "projection": {"type": "equalEarth"},
-  "view": {"strokeOpacity": 0},
   "layer": [
     {
       "data": {
@@ -53,7 +57,7 @@
           "type": "quantitative",
           "scale": {
             "type": "threshold",
-            "domain": [1, 5, 200, 500],
+            "domain": [1, 5, 50, 500],
             "range": ["#f1eef6", "#bdc9e1", "#74a9cf", "#2b8cbe", "#045a8d"]
           },
           "legend": {
@@ -64,9 +68,12 @@
             "symbolOffset": 0,
             "labelAlign": "center",
             "labelBaseline": "middle",
+            "labelFont": "Open Sans", 
+            "titleFont": "Lato",
+            "titleFontSize": 12,
             "type": " symbol ",
             "rowPadding": 10,
-            "labelExpr": "datum.label == '-Infinity' ? '0' : datum.label == '1' ? '1 - 4' : datum.label == '5' ? '5 - 199' : datum.label == '200' ? '200-499' : '500+'",
+            "labelExpr": "datum.label == '-Infinity' ? '0' : datum.label == '1' ? '1 - 4' : datum.label == '5' ? '5 - 49' : datum.label == '50' ? '50-499' : '500+'",
             "titleAlign": "left",
             "titleBaseline": "top",
             "titlePadding": 30

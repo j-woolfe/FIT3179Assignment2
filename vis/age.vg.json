@@ -1,28 +1,53 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "axis": {"titleFont": "Lato", "titleFontSize": 12, "labelFont": "Open Sans", "labelFontSize": 11, "grid": false},
+    "title": {"font": "Lato", "fontSize": 18},
+    "view": {"strokeOpacity": 0}
+  },
   "title": "Age of Selected Astronauts",
-  "width": 600,
-  "height": 400,
+  "width": "container",
+  "height": 306,
   "data": {
     "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
   },
   "transform": [
     {"calculate": "datum.year_of_selection - datum.year_of_birth", "as": "age"}
   ],
-  "mark": {"type": "bar"},
-  "encoding": {
-    "x": {
-      "field": "age",
-      "title": "Age"
+  "layer": [
+    {
+      "mark": {"type": "bar", "color": "#2B8CBE"},
+      "encoding": {
+        "x": {
+          "field": "age",
+          "title": "Age",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "number",
+          "title": "Number of Astronauts",
+          "aggregate": "distinct"
+        },
+        "tooltip": [
+          {"field": "age", "title": "Age when Selected"},
+          {"field": "number", "aggregate":"distinct", "title": "Count"}
+        ]
+      }
     },
-    "y": {
-      "field": "number",
-      "title": "Number of Astronauts",
-      "aggregate": "distinct"
-    },
-    "tooltip": [
-      {"field": "age", "title": "Age when Selected"},
-      {"field": "number", "aggregate":"distinct", "title": "Count"}
-    ]
-  }
+    {
+      "data": {
+        "values": [
+          {"text": "Most astronauts are selected in their 30s"}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": -70,
+        "dy": -135,
+        "fontSize": 12
+      },
+      "encoding": {"text": {"field": "text"}}
+    }
+  ]
 }

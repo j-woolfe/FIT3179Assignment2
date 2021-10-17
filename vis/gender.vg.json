@@ -1,8 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "axis": {"titleFont": "Lato", "titleFontSize": 12, "labelFont": "Open Sans", "labelFontSize": 11, "grid": false},
+    "title": {"font": "Lato", "fontSize": 18},
+    "view": {"strokeOpacity": 0}
+  },
   "title": "Gender of Selected Astronauts",
-  "width": 600,
-  "height": 400,
+  "width": "container",
+  "height": 300,
   "layer": [
     {
       "data": {
@@ -16,7 +21,7 @@
       "encoding": {
         "x": {
           "field": "year_of_selection",
-          "title": "Year of Selection",
+          "title": "Year",
           "timeUnit": "year"
         },
         "y": {
@@ -29,8 +34,17 @@
         "color": {
           "field": "isFemale",
           "title": "Gender",
-          "scale": {"range": ["#4C78A8", "#B5CF6B"]},
-          "legend": {"labelExpr": "datum.value == 1 ? 'Female' : 'Male'", "values": [1, 0]}
+          "scale": {"range": ["#2B8CBE", "#C9F299"]},
+          "legend": {
+            "titleFont": "Lato", 
+            "titleFontSize": 12, 
+            "labelFont": "Open Sans", 
+            "padding": 5, 
+            "fillColor": "white", 
+            "strokeColor": "black",
+            "orient": "top-right", 
+            "labelExpr": "datum.value == 1 ? 'Female' : 'Male'", 
+            "values": [1, 0]}
         }
       }
     },
@@ -47,7 +61,6 @@
       "encoding": {
         "x": {
           "field": "year_of_selection",
-          "title": "Year of Selection for First Mission",
           "timeUnit": "year"
         },
         "y": {

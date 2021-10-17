@@ -1,13 +1,13 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Astronaut mission roles",
+  "title": {"text": "Astronaut mission roles", "align": "center"},
   "hconcat": [
     {
 
       "data": {
         "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
       },
-      "width": 300,
+      "width": 237,
       "height": 300,
       "mark": {"type": "bar"},
       "transform": [{"filter": "datum.year_of_selection <= 1980"}],
@@ -25,7 +25,7 @@
       "data": {
         "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
       },
-      "width": 300,
+      "width": 237,
       "height": 300,
       "mark": {"type": "bar"},
       "transform": [
@@ -47,7 +47,7 @@
       "data": {
         "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
       },
-      "width": 300,
+      "width": 237,
       "height": 300,
       "mark": {"type": "bar"},
       "transform": [{"filter": "datum.year_of_selection > 2000"}],

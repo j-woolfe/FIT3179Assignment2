@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "axis": {"labelFont": "Open Sans", "labelFontSize": 11, "grid": false},
+    "title": {"font": "Lato", "fontSize": 14},
+    "view": {"strokeOpacity": 0}
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/jwai0004/FIT3179Assignment2/main/data/astronauts.csv"
+  },
+  "title": "1980-2000",
+  "width": "container",
+  "height": 300,
+  "mark": {"type": "bar"},
+  "transform": [
+    {
+      "filter": "datum.year_of_selection > 1980 && datum.year_of_selection <= 2000"
+    }
+  ],
+  "encoding": {
+    "x": {"field": "occupation", "sort": "-y", "title": null, "axis": {"labelAngle": -45}},
+    "y": {"field": "number", "aggregate": "count", "axis": {"title": null}, "scale": {"domainMax": 350}},
+    "color": {
+      "field": "occupation", 
+      "title": "Mission Role", 
+      "legend": null, 
+      "scale": {
+        "range": ["#2B8CBE", "#BDC9E1", "#93A083", "#4F345A", "#5D4E6D", "#C9F299", "#EEE3AB"]
+      }
+    },
+    "tooltip": [
+      {"field": "occupation", "type": "nominal", "title": "Mission Role"},
+      {"field": "number", "aggregate": "count", "title": "Count"}
+      ]
+  }
+}
