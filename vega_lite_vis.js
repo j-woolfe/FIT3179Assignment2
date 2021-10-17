@@ -1,11 +1,11 @@
-let vg_1 = "astronaut_map.vg.json";
-let vg_2 = "military_status.vg.json";
-let vg_3 = "gender.vg.json";
-let vg_4 = "age.vg.json";
-let vg_5 = "occupation.vg.json";
+let map_vg = "vis/astronaut_map.vg.json";
+let military_vg = "vis/military_status.vg.json";
+let gender_vg = "vis/gender.vg.json";
+let age_vg = "vis/age.vg.json";
+let occupation_vg = "vis/occupation.vg.json";
 
-vegaEmbed("#map", vg_1).then(function(result) {}).catch(console.error);
-vegaEmbed("#military", vg_2).then(function(result) {}).catch(console.error);
-vegaEmbed("#gender", vg_3).then(function(result) {}).catch(console.error);
-vegaEmbed("#age", vg_4).then(function(result) {}).catch(console.error);
-vegaEmbed("#occupation", vg_5).then(function(result) {}).catch(console.error);
+vegaEmbed("#map", map_vg).then(function(result) {}).catch(console.error);
+vegaEmbed("#military", military_vg).then(function(result) {}).catch(console.error);
+vegaEmbed("#gender", gender_vg).then(function(result) {}).catch(console.error);
+vegaEmbed("#age", age_vg).then(function(result) {}).catch(console.error);
+vegaEmbed("#occupation", occupation_vg).then(function(result) {}).catch(console.error);
