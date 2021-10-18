@@ -8,13 +8,6 @@ h1 {
 
 }
 
-.subtitle {
-    /* background-color: #f1eef6; */
-    padding: 10px;
-    margin-right: 340px;
-    margin-bottom: 10px;
-}
-
 p {
     background-color: #f1eef6;
     padding: 10px;
@@ -36,4 +29,6 @@ p {
 
 .vis-container {
     width : 100%;
+    font-family: 'Lato', sans-serif;
 }
+
